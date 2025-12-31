@@ -1,6 +1,7 @@
 "use client"
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function ListPage() {
   const router= useRouter();
@@ -56,7 +57,7 @@ export default function ListPage() {
   </svg>Back Home</span>
       {items.map((item, index) => (
         <div key={index} className="md:mt-6 mt-20 md:w-[30%] w-[90%] p-2 flex flex-col items-center gap-2">
-          <img className="w-[100px] h-[100px] rounded-full" src={item.pic || 'default pic'} alt="" />
+          <Image width={100} height={100} className=" rounded-full" src={item.pic || 'default pic'} alt="" />
           <span className="text-center font-bold">{item.desc}</span>
         {item.links.map((link, i) => (
      <a href={link.link} className="bg-white p-2 text-black w-full" key={i}>{link.shorttext}</a> // ← this is where shorttext comes from

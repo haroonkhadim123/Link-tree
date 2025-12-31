@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import Image from "next/image";
 
 export default function Home() {
   const router = useRouter();
@@ -24,14 +25,14 @@ export default function Home() {
     {/* LEFT CONTENT */}
     <div className="flex flex-col  gap-5 md:gap-8 text-center md:text-left">
       <h1 className="text-[#d2e823] text-4xl sm:text-5xl md:text-5xl font-extrabold whitespace-nowrap ">
-        A link in bio built
+    {"A link in bio built"}
       </h1>
       <h1 className="text-[#d2e823] text-4xl sm:text-5xl md:text-5xl font-extrabold">
-        for you.
+        {"for you."}
       </h1>
 
       <p className="text-[#d2e823] font-bold mt-3 sm:mt-5 text-sm sm:text-base md:text-lg max-w-md mx-auto md:mx-0">
-        Join 70M+ people using Linktree for their link in bio.
+   {" Join 70M+ people using Linktree for their link in bio."}
       </p>
 
       <div className="flex p-2 flex-col sm:flex-row gap-3 mt-5 justify-center md:justify-start">
@@ -47,18 +48,20 @@ export default function Home() {
           onClick={createTree}
           className="p-3 sm:p-4 px-6 md:w-full text-white font-bold rounded-full whitespace-nowrap bg-[#d2e823] hover:bg-lime-400 transition"
         >
-          Get started for free
+      {"    Get started for free"}
         </button>
       </div>
     </div>
 
     {/* RIGHT IMAGE */}
     <div className="flex items-center justify-center hidden md:block mt-10 md:mt-0">
-      <img
-        src="/home.png"
-        alt="home"
-        className="w-full max-w-xs sm:max-w-sm md:max-w-md"
-      />
+      <Image
+  src="/home.png"
+  alt="home"
+  width={400}
+  height={400}
+  className="w-full max-w-xs sm:max-w-sm md:max-w-md"
+/>
     </div>
 
   </section>
@@ -99,19 +102,26 @@ export default function Home() {
   <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl text-center">
 
     <div className="bg-white rounded-xl shadow-lg p-6 flex flex-col gap-4 items-center hover:shadow-xl transition-shadow">
-      <p className="italic text-gray-700">"Bittree made sharing all my content so easy! My followers love it."</p>
-      <span className="font-bold text-gray-900">Sarah K.</span>
-    </div>
+  <p className="italic text-gray-700">
+    {`"Bittree made sharing all my content so easy! My followers love it."`}
+  </p>
+  <span className="font-bold text-gray-900">Sarah K.</span>
+</div>
 
-    <div className="bg-white rounded-xl shadow-lg p-6 flex flex-col gap-4 items-center hover:shadow-xl transition-shadow">
-      <p className="italic text-gray-700">"I can track my clicks and engagement all in one place!"</p>
-      <span className="font-bold text-gray-900">James L.</span>
-    </div>
+<div className="bg-white rounded-xl shadow-lg p-6 flex flex-col gap-4 items-center hover:shadow-xl transition-shadow">
+  <p className="italic text-gray-700">
+    {`"I can track my clicks and engagement all in one place!"`}
+  </p>
+  <span className="font-bold text-gray-900">James L.</span>
+</div>
 
-    <div className="bg-white rounded-xl shadow-lg p-6 flex flex-col gap-4 items-center hover:shadow-xl transition-shadow">
-      <p className="italic text-gray-700">"Beautiful design and super easy to use. Highly recommend!"</p>
-      <span className="font-bold text-gray-900">Mia R.</span>
-    </div>
+<div className="bg-white rounded-xl shadow-lg p-6 flex flex-col gap-4 items-center hover:shadow-xl transition-shadow">
+  <p className="italic text-gray-700">
+    {`"Beautiful design and super easy to use. Highly recommend!"`}
+  </p>
+  <span className="font-bold text-gray-900">Mia R.</span>
+</div>
+
 
   </div>
 </section>
