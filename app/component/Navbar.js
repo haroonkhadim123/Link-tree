@@ -26,7 +26,7 @@ const Navbar = () => {
         </div>
 
         {/* Desktop Menu */}
-        <ul className='hidden md:flex items-center gap-8'>
+        <ul className='hidden md:flex items-center gap-8 dark:text-black'>
           <Link href="/">Home</Link>
           <Link href="/form">Form</Link>
           <Link href="/form">List</Link>

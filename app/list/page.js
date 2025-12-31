@@ -74,7 +74,7 @@ const handleclick = async () => {
   className="rounded-full object-cover h-[100px] w-[100px]"
 />
 
-          <span className="text-center font-bold">{item.desc}</span>
+          <span className="text-center font-bold dark:text-black">{item.desc}</span>
         {item.links.map((link, i) => (
      <a href={link.link} className="bg-white p-2 text-black w-full" key={i}>{link.shorttext}</a> // ← this is where shorttext comes from
     ))}
