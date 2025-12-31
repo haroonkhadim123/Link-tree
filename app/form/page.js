@@ -32,14 +32,15 @@ const Page = () => {
       if (result.success) {
         toast.success("Bittree created successfully");
         router.push(`/list`);
+          sethandle("");
+      setpic("");
+      setdesc("");
+      setlink([{ link: "", shorttext: "" }]);
       } else {
         toast.error(result.message || "Something went wrong");
       }
 
-      sethandle("");
-      setpic("");
-      setdesc("");
-      setlink([{ link: "", shorttext: "" }]);
+    
     } catch (error) {
       console.log("error", error);
       toast.error("Something went wrong");
@@ -134,13 +135,15 @@ const Page = () => {
 
       {/* IMAGE SECTION */}
       <div className="w-full md:w-1/2 flex justify-center">
-        <Image
-  src="/generate.png"
+       <Image
+  src={`/generate.png`} // fallback if pic is empty
   alt="Generate"
-  width={400}      // example width
-  height={300}     // example height
+  width={400}
+  height={300}
   className="w-full max-w-sm md:max-w-md"
+  unoptimized // ✅ allow any external URL
 />
+
       </div>
     </section>
   );

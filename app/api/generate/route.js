@@ -57,23 +57,23 @@ export async function POST(request) {
     );
   }
 }
-export async function DELETE(request) {
+export async function DELETE(req) {
   try {
-    const body = await request.json();
+    const { handle } = await req.json();
+    if (!handle) return NextResponse.json({ success: false, message: "Handle required" }, { status: 400 });
+
     const client = await clientPromise;
     const db = client.db("bittree");
-    const collection = db.collection("users");
-    await collection.deleteOne({ handle: body.handle });
-    return NextResponse.json({
-      success: true,
-      message: " Logout successfully",
-    });
+
+    const result = await db.collection("users").deleteMany({ handle }); // delete all related docs
+
+    if (result.deletedCount === 0) {
+      return NextResponse.json({ success: false, message: "No data found" }, { status: 404 });
+    }
+
+    return NextResponse.json({ success: true, message: "Deleted successfully" });
   } catch (error) {
-    console.error("DELETE error:", error);
-    return NextResponse.json({
-      success: false,
-      message: "Internal Server Error",
-      error: error.message,
-    });
+    console.error(error);
+    return NextResponse.json({ success: false, message: "Something went wrong" }, { status: 500 });
   }
 }

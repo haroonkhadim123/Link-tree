@@ -1,6 +1,7 @@
 "use client"
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 import Image from "next/image";
 
 export default function ListPage() {
@@ -16,28 +17,36 @@ export default function ListPage() {
   useEffect(() => {
     fetchData();
   }, []);
-    const handleclick = async () => {
-    try {
-      const res = await fetch("/api/generate", {
-        method: "DELETE",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          handle: items[0]?.handle, // 👈 unique user handle
-        }),
-      });
+const handleclick = async () => {
+  if (!items[0]?.handle) {
+    toast.error("No handle to delete");
+    return;
+  }
 
-      if (!res.ok) throw new Error("Delete failed");
+  try {
+    const res = await fetch("/api/generate", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ handle: items[0].handle }),
+    });
 
-      // ✅ Remove data from frontend instantly
-      setItems([]);
+    const data = await res.json(); // ✅ must get JSON
 
-      
-      router.push("/");
-    } catch (error) {
-      console.error(error);
-      alert("Logout failed");
+    if (!res.ok) {
+      toast.error(data.message || "Delete failed");
+      return;
     }
-  };
+
+    setItems([]);
+    router.push("/");
+   
+  } catch (error) {
+    console.error(error);
+    toast.error("Delete failed");
+  }
+};
+
+
 
   return (
     <div className="min-h-screen flex flex-col items-center bg-purple-300 relative">
@@ -57,7 +66,14 @@ export default function ListPage() {
   </svg>Back Home</span>
       {items.map((item, index) => (
         <div key={index} className="md:mt-6 mt-20 md:w-[30%] w-[90%] p-2 flex flex-col items-center gap-2">
-          <Image width={100} height={100} className=" rounded-full" src={item.pic || 'default pic'} alt="" />
+        <Image
+  src={item.pic || "/default-pic.png"}
+  alt="Profile"
+  width={100}
+  height={100}          // make width = height for perfect circle
+  className="rounded-full object-cover h-[100px] w-[100px]"
+/>
+
           <span className="text-center font-bold">{item.desc}</span>
         {item.links.map((link, i) => (
      <a href={link.link} className="bg-white p-2 text-black w-full" key={i}>{link.shorttext}</a> // ← this is where shorttext comes from
