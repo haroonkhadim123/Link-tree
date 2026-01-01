@@ -1,4 +1,4 @@
-Bittree – Link-in-Bio Platform
+huBittree – Link-in-Bio Platform
 
 Bittree is a modern, responsive link-in-bio web application inspired by Linktree. It allows users to create a personalized page where they can share multiple links through a single handle. The project is built using Next.js (App Router) and Tailwind CSS, focusing on performance, clean UI, and scalability.
 
@@ -68,4 +68,4 @@ Used Tailwind’s responsive utilities (sm, md, lg) to ensure a consistent layou
 
 📸 Demo
 
-🔗 Live Demo: (Add your deployed Vercel link here)
+🔗 Live Demo: (https://link-tree-eight-pearl.vercel.app/)
