@@ -11,6 +11,7 @@ const Page = () => {
   const [pic, setpic] = useState("");
   const [links, setlink] = useState([{ link: "", shorttext: "" }]);
   const [desc, setdesc] = useState("");
+  const [loader, setloader] = useState(false)
 
   const addlink = () => {
     setlink([...links, { link: "", shorttext: "" }]);
@@ -23,6 +24,7 @@ const Page = () => {
       return;
     }
     try {
+      setloader(true)
       const response = await fetch("/api/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -38,12 +40,16 @@ const Page = () => {
       setlink([{ link: "", shorttext: "" }]);
       } else {
         toast.error(result.message || "Something went wrong");
+        setloader(false)
       }
 
     
     } catch (error) {
       console.log("error", error);
       toast.error("Something went wrong");
+    }
+    finally{
+      setloader(false)
     }
   };
 
@@ -127,7 +133,7 @@ const Page = () => {
               type="submit"
               className="text-white bg-black p-2 rounded-full px-4 mt-2 w-max"
             >
-              Create your Bittree
+              {loader ? "Creating...": "Create your Bittree" } 
             </button>
           </div>
         </form>
